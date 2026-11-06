@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Comic Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Our Comic Story</h1>
+        <p>A Story That Opens Our Eyes</p>
+    </header>
+    <nav>
+    <a href="#about">About</a>
+    <a href="#comic">Our Comic</a>
+    <a href="#feedback">Feedback</a>
+</nav>
+
+  <section id="about">
+    <h2>About Our Comic</h2>
+
+    <p>
+        Our comic is about the importance of taking care
+        of our environment. It shows how improper waste
+        disposal and pollution can harm nature and affect
+        people's lives.
+    </p>
+
+    <p>
+        Through this story, we want to remind everyone
+        that protecting the environment is everyone's
+        responsibility. Simple actions like throwing
+        garbage properly, recycling, and keeping our
+        surroundings clean can make a big difference.
+    </p>
+</section>
+
+<section id="comic">
+    <h2>Meet Our Comic</h2>
+    <p>Explore our story and discover its message.</p>
+
+    <img src="images/comic.jpeg" alt="Our Comic Strip" class="comic-image">
+</section>
+ <section id="feedback">
+    <h2>Share Your Thoughts</h2>
+    <p>What do you think about the issue in our comic?</p>
+
+    <form id="feedbackForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="feedback">Your Opinion:</label>
+        <textarea id="feedback" placeholder="Share your thoughts..." required></textarea>
+
+        <label for="solution">Your Suggested Solution:</label>
+        <textarea id="solution" placeholder="What can we do to solve this issue?" required></textarea>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+
+    <p id="response"></p>
+</section>
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    Back to Top ↑
+</button>
+    <footer>
+     <p>Created by: Nica Sydney Lee C. Lociriaga</p>
+<p>Made with HTML5, CSS, and Python Flask</p>
+<p>© 2026 Our Comic Website</p>
+ <p>AI Assistance: ChatGPT was used to help
+with website coding, CSS design, debugging,
+and improving the content of our website.</p>
+    </footer>
+<script>
+const API_URL = "https://rubdown-durable-uncapped.ngrok-free.dev";
+localhost:7700/Comic Project/index.html#feedback
+document.getElementById("feedbackForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const feedback = document.getElementById("feedback").value;
+    const solution = document.getElementById("solution").value;
+
+    try {
+        const result = await fetch(API_URL + "/feedback", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, feedback, solution })
+        });
+
+        const data = await result.json();
+
+        document.getElementById("response").textContent = data.message;
+        this.reset();
+
+    } catch (error) {
+        document.getElementById("response").textContent =
+            "Could not send feedback. Please try again.";
+    }
+});
+</script>
+</body>
+</html>
