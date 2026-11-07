@@ -130,3 +130,27 @@ nav a:hover {
         padding: 18px;
     }
 }
+ /* Subject Integration Section */
+#subjects {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.subject {
+    background-color: #f0f8f0;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 12px;
+    border: 1px solid #b7d8b7;
+}
+
+.subject h3 {
+    color: #267a3e;
+    margin-bottom: 10px;
+}
+
+.subject p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
